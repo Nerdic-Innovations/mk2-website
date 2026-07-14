@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MK-// | The intelligence inside.</title>
+<meta name="description" content="Aircraft-grade flight control and autonomy for uncrewed and autonomous systems. Engineered in India, built for operators worldwide.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════════════════════════════
+   Nocturne - design-system tokens and component classes.
+   Inlined from the source design system (_ds/nocturne).
+   ══════════════════════════════════════════════════════════════════════ */
+:root {
+  --color-bg: #161826;
+  --color-surface: #232532;
+  --color-text: #e9e9ed;
+  --color-accent: #9184d9;
+  --color-accent-2: #a7a1db;
+  --color-divider: color-mix(in srgb, #e9e9ed 16%, transparent);
+
+  --color-neutral-100: #f3f5fe;
+  --color-neutral-200: #e4e7f5;
+  --color-neutral-300: #cfd3e5;
+  --color-neutral-400: #b2b6ca;
+  --color-neutral-500: #9397ab;
+  --color-neutral-600: #75798c;
+  --color-neutral-700: #595d6c;
+  --color-neutral-800: #3f424d;
+  --color-neutral-900: #292b31;
+
+  --color-accent-100: #f5f4ff;
+  --color-accent-200: #e7e5fe;
+  --color-accent-300: #d2cefd;
+  --color-accent-400: #b5abfc;
+  --color-accent-500: #968ae0;
+  --color-accent-600: #796cbf;
+  --color-accent-700: #5d5294;
+  --color-accent-800: #423a6a;
+  --color-accent-900: #2b2741;
+
+  --color-accent-2-100: #f5f4ff;
+  --color-accent-2-200: #e7e5fe;
+  --color-accent-2-300: #d2cefd;
+  --color-accent-2-400: #b5afe8;
+  --color-accent-2-500: #9690c9;
+  --color-accent-2-600: #7972a9;
+  --color-accent-2-700: #5c5783;
+  --color-accent-2-800: #423e5d;
+  --color-accent-2-900: #2b293a;
+
+  --color-section: #262a60;
+  --color-section-glow: #353b80;
+  --color-section-ghost: #4c5397;
+
+  --font-heading: "Inter", system-ui, sans-serif;
+  --font-heading-weight: 500;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --space-1: 2.8px;
+  --space-2: 5.6px;
+  --space-3: 8.4px;
+  --space-4: 11.2px;
+  --space-6: 16.8px;
+  --space-8: 22.4px;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 0 0 1px #3f424d;
+  --shadow-md: 0 0 0 1px #595d6c, 0 6px 18px rgba(0,0,0,0.55);
+  --shadow-lg: 0 0 0 1px #9397ab, 0 16px 40px rgba(0,0,0,0.65);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+/* Smooth anchor scrolling is driven by JS (requestAnimationFrame) rather than
+   CSS scroll-behavior, because the OS "reduce motion" setting freezes CSS
+   smooth-scroll - leaving the page not scrolling at all. Keep this 'auto'. */
+html { scroll-behavior: auto; }
+body {
+  margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400;
+  background: var(--color-bg); color: var(--color-text); font-family: var(--font-body);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
+}
+h1 { font-size: 42px; }
+h2 { font-size: 32px; }
+h3 { font-size: 25px; }
+h4 { font-size: 20px; }
+h5 { font-size: 16px; }
+h6 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+p { margin: 0 0 var(--space-3); }
+a { color: var(--color-accent); text-underline-offset: 3px; }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+.hr {
+  height: 1px; border: 0; margin: var(--space-4) 0;
+  background: linear-gradient(to right,
+    transparent, var(--color-divider) 48px,
+    var(--color-divider) calc(100% - 48px), transparent);
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer; text-decoration: none;
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 14px; line-height: 1.2; color: var(--color-text);
+  background: transparent; border: 1px solid transparent;
+  padding: var(--space-2) calc(var(--space-3) * 1.2);
+  border-radius: var(--radius-md);
+}
+.btn svg { display: block; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { color: var(--color-accent); border-color: var(--color-accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.btn-primary:active { background: color-mix(in srgb, var(--color-accent) 22%, transparent); }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-1); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
+
+.nav {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3) var(--space-4); border-bottom: none;
+}
+.nav-brand {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  font-size: 18px; margin-right: auto;
+}
+.nav a { color: inherit; text-decoration: none; font-size: 14px; }
+.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
+
+/* ── Page-specific theming (MK-// landing) ── */
+[data-mk-theme]{ transition: background-color .35s ease, color .35s ease; }
+@keyframes mk-marquee{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+[data-mk-theme="dark"]{
+  --color-bg:#0a0b0c; --color-surface:#15161a; --color-text:#f1f2f4;
+  --color-accent:#eceef0; --color-divider:color-mix(in srgb,#f1f2f4 15%,transparent);
+  --mk-glow:color-mix(in srgb,#f1f2f4 7%,transparent);
+  --mk-band-bg:#eceef0; --mk-band-ink:#0a0b0c; --mk-band-divider:color-mix(in srgb,#0a0b0c 22%,transparent);
+}
+[data-mk-theme="light"]{
+  --color-bg:#f3f3f1; --color-surface:#ffffff; --color-text:#17181a;
+  --color-accent:#17181a; --color-divider:color-mix(in srgb,#17181a 14%,transparent);
+  --mk-glow:color-mix(in srgb,#17181a 5%,transparent);
+  --mk-band-bg:#141517; --mk-band-ink:#f3f3f1; --mk-band-divider:color-mix(in srgb,#f3f3f1 20%,transparent);
+}
+@media (prefers-reduced-motion: reduce){
+  [data-mk-theme]{ transition: none; }
+}
+/* The vehicle marquee is a continuous closed loop: 34 images followed by an
+   identical duplicate set, translated exactly -50% so the wrap point is
+   seamless - there is no discernible "first" image. It runs regardless of the
+   OS reduce-motion setting, by request. */
+.mk-marquee-track{ will-change: transform; }
+</style>
+</head>
+<body>
+
+<div data-mk-theme="light" style="position:relative; min-height:100vh; overflow-x:clip; color:var(--color-text); background: radial-gradient(1200px 720px at 82% -180px, var(--mk-glow), transparent 62%), var(--color-bg);">
+
+  <!-- ══ 1 · STICKY NAVIGATION ══ -->
+  <nav class="nav" style="position:sticky; top:0; z-index:50; justify-content:center; padding:14px clamp(20px,5vw,72px); background: color-mix(in srgb, var(--color-bg) 72%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom:1px solid var(--color-divider);">
+    <a href="#" aria-label="MK-// home" style="display:block; width:80px; height:80px;">
+      <img src="assets/MK2_black_logo_transparent.png" alt="MK-//" style="width:100%; height:100%; object-fit:contain; display:block;">
+    </a>
+  </nav>
+
+  <!-- ══ 2 · HERO ══ -->
+  <section style="position:relative; min-height:calc(100vh - 108px); display:flex; align-items:center;">
+    <div style="position:absolute; inset:clamp(20px,4vw,56px); border:1px dashed color-mix(in srgb, var(--color-text) 16%, transparent); border-radius:var(--radius-lg); overflow:hidden;">
+      <video src="assets/Media/mk2_landing_intro.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1"
+        style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;"></video>
+      <!-- legibility scrim: heavier on the left where the copy sits -->
+      <div style="position:absolute; inset:0; pointer-events:none; background: linear-gradient(90deg, color-mix(in srgb, var(--color-bg) 82%, transparent) 0%, color-mix(in srgb, var(--color-bg) 58%, transparent) 46%, color-mix(in srgb, var(--color-bg) 30%, transparent) 100%);"></div>
+    </div>
+    <div style="position:relative; width:100%; max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,72px);">
+      <h1 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(46px,7vw,96px); line-height:1.02; letter-spacing:-0.02em; margin:0; max-width:15ch;">
+        <span style="display:block;">The intelligence</span>
+        <span style="display:block;">inside.</span>
+      </h1>
+      <p style="font-size:clamp(17px,1.5vw,21px); line-height:1.6; max-width:46ch; margin:clamp(24px,3vh,40px) 0 0; color:color-mix(in srgb, var(--color-text) 82%, transparent);">Aircraft-grade flight control and autonomy for uncrewed and autonomous systems. Engineered in India, built for operators worldwide.</p>
+      <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:clamp(28px,3.5vh,44px);">
+        <a href="#lets-talk" class="btn btn-primary" style="font-size: 24px; padding: 11px 22px">Let's talk</a>
+        <a href="#products" class="btn btn-ghost" style="font-size: 24px">See what we build&nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 3 · THE POSITIONING STATEMENT (THE SHIFT) ══ -->
+  <section style="padding:clamp(96px,15vh,190px) clamp(20px,5vw,72px); text-align:center;">
+    <div style="width:56px; height:1px; background:var(--color-accent); margin:0 auto clamp(32px,5vh,56px);"></div>
+    <h2 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(30px,4.4vw,60px); line-height:1.1; letter-spacing:-0.02em; margin:0 auto; max-width:20ch;">Not another autopilot.</h2>
+    <h2 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(30px,4.4vw,60px); line-height:1.1; letter-spacing:-0.02em; margin:0 auto; max-width:20ch;">The standard the category never had.</h2>
+    <p style="font-size:clamp(16px,1.4vw,19px); line-height:1.65; max-width:56ch; margin:clamp(28px,4vh,44px) auto 0; color:color-mix(in srgb, var(--color-text) 74%, transparent);">Most flight controllers are built to a price. We build the brain of the aircraft to the standard of the aircraft: certified, contested-ready, and engineered to be trusted.</p>
+    <div style="width:56px; height:1px; background:var(--color-accent); margin:clamp(32px,5vh,56px) auto 0;"></div>
+  </section>
+
+  <!-- ══ 4 · PRODUCTS OVERVIEW INTRO ══ -->
+  <section id="products" style="max-width:1180px; margin:0 auto; padding:clamp(72px,9vh,120px) clamp(20px,5vw,72px) clamp(24px,4vh,48px); scroll-margin-top:120px;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <h2 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,3.6vw,48px); line-height:1.08; letter-spacing:-0.02em; margin:0; max-width:16ch;">Three products. One intelligence layer.</h2>
+    </div>
+    <p style="font-size:clamp(16px,1.4vw,19px); line-height:1.65; max-width:64ch; margin:clamp(20px,3vh,32px) 0 0; color:color-mix(in srgb, var(--color-text) 74%, transparent);">A flight computer, a ground command suite, and an embeddable autonomy stack, engineered as one system, so every platform they touch gets smarter.</p>
+  </section>
+
+  <!-- ══ 5 · PRODUCT BLOCK 1 - MK-// AUTOPILOT ══ -->
+  <section style="max-width:1180px; margin:0 auto; padding:clamp(48px,7vh,90px) clamp(20px,5vw,72px);">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:clamp(32px,5vw,80px); align-items:center;">
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+          <span style="width:44px; height:1px; background:var(--color-accent); flex:none;"></span>
+          <span style="font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 20px; letter-spacing: 0.1em; color: var(--color-accent)">MK-// AUTOPILOTS</span>
+        </div>
+        <h3 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(26px,3.2vw,44px); line-height:1.1; letter-spacing:-0.015em; margin:0;">The flight computer, reimagined.</h3>
+        <p style="font-size:16.5px; line-height:1.65; max-width:52ch; margin:22px 0 0; color:color-mix(in srgb, var(--color-text) 78%, transparent);">The hardware-and-firmware core that flies the aircraft. Built where reliability isn't optional, autonomous from first boot, and trusted with the mission, not just the motor.</p>
+        <a href="#lets-talk" class="btn btn-ghost" style="margin-top:26px; font-size:15px;">Tell us your requirements →</a>
+      </div>
+      <figure style="margin:0;">
+        <img src="assets/Media/Autopilots.png" alt="MK-// Autopilot, flight computer" style="width:100%; height:auto; display:block;">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ 6 · PRODUCT BLOCK 2 - MK-// C2 (reverse) ══ -->
+  <section style="max-width:1180px; margin:0 auto; padding:clamp(48px,7vh,90px) clamp(20px,5vw,72px);">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:clamp(32px,5vw,80px); align-items:center;">
+      <figure style="margin:0; order:-1; border:1px solid var(--color-divider); border-radius:var(--radius-md); overflow:hidden; background:var(--color-surface);">
+        <img src="assets/Media/C2%20Software.png" alt="MK-// C2, operator console" style="width:100%; height:auto; display:block;">
+      </figure>
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+          <span style="width:44px; height:1px; background:var(--color-accent); flex:none;"></span>
+          <span style="font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 20px; letter-spacing: 0.1em; color: var(--color-accent)">MK-// C2</span>
+        </div>
+        <h3 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(26px,3.2vw,44px); line-height:1.1; letter-spacing:-0.015em; margin:0;">Command the mission. Command the fleet.</h3>
+        <p style="font-size:16.5px; line-height:1.65; max-width:52ch; margin:22px 0 0; color:color-mix(in srgb, var(--color-text) 78%, transparent);">Ground control, mission planning, and fleet command in one operator environment. Launch and oversee one aircraft or a hundred, with a workflow built for operators, not engineers.</p>
+        <a href="#lets-talk" class="btn btn-ghost" style="margin-top:26px; font-size:15px;">Request a walkthrough&nbsp;→</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 7 · PRODUCT BLOCK 3 - MK-// AUTONOMY SDK (full-bleed) ══ -->
+  <section style="position:relative; margin:clamp(24px,4vh,56px) 0; min-height:min(78vh,720px); display:flex; align-items:center;">
+    <div style="position:absolute; inset:0; overflow:hidden; border-top:1px solid var(--color-divider); border-bottom:1px solid var(--color-divider);">
+      <img src="assets/Media/autonomy.png" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.12) translateX(5%);">
+      <!-- light scrim so the dark image doesn't swallow the dark text: heavy on the left where the copy sits, clearing toward the right where the image reads -->
+      <div style="position:absolute; inset:0; background: linear-gradient(90deg, color-mix(in srgb, var(--color-bg) 94%, transparent) 0%, color-mix(in srgb, var(--color-bg) 78%, transparent) 40%, color-mix(in srgb, var(--color-bg) 40%, transparent) 78%, color-mix(in srgb, var(--color-bg) 30%, transparent) 100%);"></div>
+      <div style="position:absolute; inset:0; background: radial-gradient(1000px 520px at 80% 46%, var(--mk-glow), transparent 62%);"></div>
+    </div>
+    <div style="position:relative; width:100%; max-width:1180px; margin:0 auto; padding:clamp(72px,10vh,130px) clamp(20px,5vw,72px);">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:22px;">
+        <span style="width:44px; height:1px; background:var(--color-accent); flex:none;"></span>
+        <span style="font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 20px; letter-spacing: 0.1em; color: var(--color-accent)">MK-// AUTONOMY SDK</span>
+      </div>
+      <h3 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(30px,4.4vw,60px); line-height:1.08; letter-spacing:-0.02em; margin:0; max-width:18ch;">Autonomy any platform can carry.</h3>
+      <p style="font-size:clamp(16px,1.4vw,19px); line-height:1.65; max-width:56ch; margin:26px 0 0; color:color-mix(in srgb, var(--color-text) 80%, transparent);">Our proprietary autonomy stack. The IP at the core of what we build, embeddable in any platform, in the air, on the ground, or at sea. It delivers navigation, perception, and mission intelligence, and holds position when satellite navigation can't be trusted.</p>
+      <a href="#lets-talk" class="btn btn-ghost" style="margin-top: 28px; font-size: 24px">Explore what it enables&nbsp;→</a>
+    </div>
+  </section>
+
+  <!-- ══ 10 · CERTIFICATION & CREDIBILITY ══ -->
+  <section id="company" style="max-width:1180px; margin:0 auto; padding:clamp(56px,8vh,110px) clamp(20px,5vw,72px); scroll-margin-top:120px;">
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:22px;">
+      <span style="width:44px; height:1px; background:var(--color-accent); flex:none;"></span>
+      <span style="font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 20px; letter-spacing: 0.1em; color: var(--color-accent)">CREDIBILITY</span>
+    </div>
+    <h3 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,3.6vw,50px); line-height:1.08; letter-spacing:-0.02em; margin:0; max-width:18ch;">Certified-credible. Trusted by design.</h3>
+    <p style="font-size:clamp(16px,1.4vw,19px); line-height:1.65; max-width:58ch; margin:24px 0 0; color:color-mix(in srgb, var(--color-text) 76%, transparent);">Built to aircraft-grade standards, for missions where provenance and process aren't negotiable.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin-top:clamp(36px,5vh,60px);">
+      <div style="border:1px solid var(--color-divider); border-radius:var(--radius-md); padding:22px 20px; min-height:120px; display:flex; flex-direction:column; justify-content:space-between;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:22px; font-weight:600; letter-spacing:0.04em; color:var(--color-accent);">DO-178C</span>
+        <span style="font-size:13px; color:color-mix(in srgb, var(--color-text) 60%, transparent);">Airborne software built to the airworthiness safety standard.</span>
+      </div>
+      <div style="border:1px solid var(--color-divider); border-radius:var(--radius-md); padding:22px 20px; min-height:120px; display:flex; flex-direction:column; justify-content:space-between;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:22px; font-weight:600; letter-spacing:0.04em; color:var(--color-accent);">DO-160</span>
+        <span style="font-size:13px; color:color-mix(in srgb, var(--color-text) 60%, transparent);">Environmental qualification for airborne equipment.</span>
+      </div>
+      <div style="border:1px solid var(--color-divider); border-radius:var(--radius-md); padding:22px 20px; min-height:120px; display:flex; flex-direction:column; justify-content:space-between;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:22px; font-weight:600; letter-spacing:0.04em; color:var(--color-accent);">DO-254</span>
+        <span style="font-size:13px; color:color-mix(in srgb, var(--color-text) 60%, transparent);">Design assurance for airborne electronic hardware.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 11 · THE SPECTRUM (VISION, RESTRAINED) ══ -->
+  <section style="max-width:1180px; margin:0 auto; padding:clamp(80px,12vh,160px) clamp(20px,5vw,72px); text-align:center;">
+    <h2 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(28px,4vw,54px); line-height:1.1; letter-spacing:-0.02em; margin:0 auto; max-width:20ch;">From the smallest drone to certified aircraft.</h2>
+    <p style="font-size:clamp(16px,1.4vw,19px); line-height:1.65; margin:24px auto 0; max-width:44ch; color:color-mix(in srgb, var(--color-text) 74%, transparent);">One intelligence layer, across every class of uncrewed platform: air, ground, and sea. This is where we're headed.</p>
+    <div style="margin:clamp(44px,6vh,72px) 0 0; width:100vw; margin-left:calc(50% - 50vw); overflow:hidden; -webkit-mask-image:linear-gradient(to right, transparent, #000 5%, #000 92%, transparent); mask-image:linear-gradient(to right, transparent, #000 5%, #000 92%, transparent);">
+      <div class="mk-marquee-track" style="display:flex; width:max-content; transform:translate3d(0,0,0);">
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/bimp-single-envelope-airship%201.png" alt="Bimp Single Envelope Airship" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/fixed-wing-canard-configuration%201.png" alt="Fixed Wing Canard Configuration" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/fixed-wing-conventional-layout%201.png" alt="Fixed Wing Conventional Layout" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/fixed-wing-delta-wing%201.png" alt="Fixed Wing Delta Wing" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/fixed-wing-flying-wing%201.png" alt="Fixed Wing Flying Wing" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/fixed-wing-twin-boom%201.png" alt="Fixed Wing Twin Boom" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/gyrocopter-conventional-autogyro%201.png" alt="Gyrocopter Conventional Autogyro" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/gyrocopter-hybrid-helicopter%201.png" alt="Gyrocopter Hybrid Helicopter" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/haps-fixed-wing-haps%201.png" alt="Haps Fixed Wing Haps" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/haps-flexible-or-modular%201.png" alt="Haps Flexible Or Modular" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/haps-solar-electric%201.png" alt="Haps Solar Electric" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/helicopter-coaxial-helicopter%201.png" alt="Helicopter Coaxial Helicopter" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/helicopter-conventional-rotorcraft%201.png" alt="Helicopter Conventional Rotorcraft" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/helicopter-intermeshing-rotor%201.png" alt="Helicopter Intermeshing Rotor" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/helicopter-tandem-rotor%201.png" alt="Helicopter Tandem Rotor" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/multirotor-coaxial-custom-frames%201.png" alt="Multirotor Coaxial Custom Frames" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/multirotor-hexacopters%201.png" alt="Multirotor Hexacopters" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/multirotor-quadcopters%201.png" alt="Multirotor Quadcopters" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/multirotor-trirotor%201.png" alt="Multirotor Trirotor" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/parafoil-powered-paramotors%201.png" alt="Parafoil Powered Paramotors" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/parafoil-single-or-dual-canopy%201.png" alt="Parafoil Single Or Dual Canopy" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/parafoil-unpowerd-glide%201.png" alt="Parafoil Unpowerd Glide" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/target-fixed-wing-or-multirotor%201.png" alt="Target Fixed Wing Or Multirotor" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/target-helicopter-or-parafoil%201.png" alt="Target Helicopter Or Parafoil" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/target-modular-configurations%201.png" alt="Target Modular Configurations" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/ugv-2wd-4wd-skid-steer%201.png" alt="Ugv 2Wd 4Wd Skid Steer" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/ugv-articulated-robots%201.png" alt="Ugv Articulated Robots" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/ugv-wheeled-platforms%201.png" alt="Ugv Wheeled Platforms" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/usv-catamarans%201.png" alt="Usv Catamarans" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/usv-monohull-boats%201.png" alt="Usv Monohull Boats" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/vtol-multirotor-fixed-wing%201.png" alt="Vtol Multirotor Fixed Wing" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/vtol-tail-sitter%201.png" alt="Vtol Tail Sitter" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/vtol-tilt-rotor%201.png" alt="Vtol Tilt Rotor" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;"><img src="assets/vehicles/vtol-tilt-wing%201.png" alt="Vtol Tilt Wing" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/bimp-single-envelope-airship%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/fixed-wing-canard-configuration%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/fixed-wing-conventional-layout%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/fixed-wing-delta-wing%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/fixed-wing-flying-wing%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/fixed-wing-twin-boom%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/gyrocopter-conventional-autogyro%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/gyrocopter-hybrid-helicopter%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/haps-fixed-wing-haps%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/haps-flexible-or-modular%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/haps-solar-electric%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/helicopter-coaxial-helicopter%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/helicopter-conventional-rotorcraft%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/helicopter-intermeshing-rotor%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/helicopter-tandem-rotor%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/multirotor-coaxial-custom-frames%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/multirotor-hexacopters%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/multirotor-quadcopters%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/multirotor-trirotor%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/parafoil-powered-paramotors%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/parafoil-single-or-dual-canopy%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/parafoil-unpowerd-glide%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/target-fixed-wing-or-multirotor%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/target-helicopter-or-parafoil%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/target-modular-configurations%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/ugv-2wd-4wd-skid-steer%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/ugv-articulated-robots%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/ugv-wheeled-platforms%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/usv-catamarans%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/usv-monohull-boats%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/vtol-multirotor-fixed-wing%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/vtol-tail-sitter%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/vtol-tilt-rotor%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <div style="flex:none; width:200px; height:130px; margin-right:clamp(28px,4vw,56px); display:flex; align-items:center; justify-content:center;" aria-hidden="true"><img src="assets/vehicles/vtol-tilt-wing%201.png" alt="" style="max-width:100%; max-height:100%; object-fit:contain; display:block;"></div>
+        <!-- (marquee: 34 vehicles + duplicate set for seamless loop) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 12 · PRIMARY CALL-TO-ACTION BAND ══ -->
+  <section id="lets-talk" style="background: var(--mk-band-bg); color: var(--mk-band-ink); scroll-margin-top:120px;">
+    <div style="max-width:1180px; margin:0 auto; padding:clamp(72px,11vh,150px) clamp(20px,5vw,72px); text-align:center;">
+      <h2 style="font-family:var(--font-heading); font-weight:500; font-size:clamp(32px,4.6vw,64px); line-height:1.06; letter-spacing:-0.02em; margin:0 auto; max-width:16ch; color:var(--mk-band-ink);">Let's build the standard together.</h2>
+      <p style="font-size:clamp(16px,1.5vw,20px); line-height:1.6; margin:24px auto 0; max-width:60ch; color:color-mix(in srgb, var(--mk-band-ink) 82%, transparent);">Backing category-defining deep tech, building a platform of your own, or evaluating the stack for a program? Let's talk.</p>
+      <div style="margin-top:clamp(32px,4.5vh,52px); display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <span style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:color-mix(in srgb, var(--mk-band-ink) 55%, transparent);">Write to us</span>
+        <a href="mailto:flyhigh@mark-two.com" style="font-family:'IBM Plex Mono', ui-monospace, monospace; font-size:clamp(20px,3.4vw,36px); letter-spacing:0.005em; color:var(--mk-band-ink); text-decoration:none; border-bottom:1px solid color-mix(in srgb, var(--mk-band-ink) 38%, transparent); padding-bottom:4px;">flyhigh@mark-two.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 13 · FOOTER ══ -->
+  <footer style="max-width:1180px; margin:0 auto; padding:clamp(48px,7vh,80px) clamp(20px,5vw,72px);">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <img src="assets/MK2_black_name_transparent.png" alt="MK-//" style="width: 200px; height: auto; object-fit:contain; display:block;">
+      <p style="font-size: 24px; margin: 0; color: color-mix(in srgb, var(--color-text) 55%, transparent); text-align:right;">Proudly Made In India</p>
+    </div>
+    <div class="hr" style="margin:clamp(32px,4vh,48px) 0;"></div>
+    <p style="font-size: 18px; margin: 0; color: color-mix(in srgb, var(--color-text) 42%, transparent)">© 2026 Nerdic Innovations Pvt Ltd. All rights reserved.</p>
+  </footer>
+
+</div>
+
+<script>
+/* ── Vehicle marquee: a continuous, seamless closed loop ──────────────────
+   The track holds 34 vehicle images followed by an identical duplicate set.
+   We translate the track leftward and, the instant it has moved by exactly
+   one set's width, snap it back by that same width. Because the content at
+   that point is pixel-identical to the start, the wrap is invisible - there
+   is no discernible "first" image; it reads as one endless belt.
+
+   Driven by requestAnimationFrame (not a CSS/WAAPI time animation) so it keeps
+   running even when the OS "reduce motion" setting is on, which otherwise
+   freezes CSS animations at time 0. */
+(function () {
+  var track = document.querySelector('.mk-marquee-track');
+  if (!track) return;
+  var SPEED = 50;            // pixels per second
+  var pos = 0, wrap = 0, last = null, running = false;
+
+  function measure() {
+    var cells = track.children;
+    if (cells.length < 2) { wrap = 0; return; }
+    var half = cells.length / 2 | 0;   // first cell of the duplicate set
+    // width of exactly one set = distance from the first cell to the first
+    // duplicate. offsetLeft is layout-based, so our transform never skews it.
+    wrap = cells[half].offsetLeft - cells[0].offsetLeft;
+    if (wrap > 0) { pos = pos % wrap; }     // keep phase after a resize
+  }
+
+  function frame(ts) {
+    if (last === null) last = ts;
+    var dt = (ts - last) / 1000; last = ts;
+    // clamp dt so a backgrounded tab doesn't jump the belt on return
+    if (dt > 0.1) dt = 0.1;
+    if (wrap > 0) {
+      pos -= SPEED * dt;
+      if (pos <= -wrap) pos += wrap;
+      track.style.transform = 'translate3d(' + pos.toFixed(2) + 'px,0,0)';
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function start() {
+    measure();
+    if (running) return;
+    running = true;
+    last = null;
+    requestAnimationFrame(frame);
+  }
+
+  // Start now, then re-measure once images have their final widths.
+  start();
+  window.addEventListener('load', measure);
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt); rt = setTimeout(measure, 150);
+  });
+})();
+
+/* ── Smooth in-page anchor scrolling ──────────────────────────────────────
+   Clicking a #anchor link (e.g. "See what we build" → #products) glides the
+   page to the target with an eased requestAnimationFrame animation. rAF is
+   used instead of CSS scroll-behavior:smooth so the motion still plays when
+   the OS "reduce motion" setting is on (which freezes CSS smooth scroll). */
+(function () {
+  var HEADER_OFFSET = 116;          // land just below the sticky header
+  var raf = 0;
+  function easeInOutCubic(t){ return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2; }
+
+  function glideTo(targetY) {
+    if (raf) cancelAnimationFrame(raf);
+    var startY = window.pageYOffset;
+    var maxY = document.documentElement.scrollHeight - window.innerHeight;
+    targetY = Math.max(0, Math.min(targetY, maxY));
+    var dist = targetY - startY;
+    if (Math.abs(dist) < 2) { window.scrollTo(0, targetY); return; }
+    var dur = Math.min(1000, Math.max(400, Math.abs(dist) * 0.6));
+    var t0 = null;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      window.scrollTo(0, startY + dist * easeInOutCubic(p));
+      if (p < 1) raf = requestAnimationFrame(step); else raf = 0;
+    }
+    raf = requestAnimationFrame(step);
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (href === '#' || href === '') { e.preventDefault(); glideTo(0); history.pushState(null, '', location.pathname + location.search); return; }
+    var el = document.getElementById(href.slice(1));
+    if (!el) return;
+    e.preventDefault();
+    var y = el.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
+    glideTo(y);
+    history.pushState(null, '', href);
+  });
+})();
+</script>
+</body>
+</html>
