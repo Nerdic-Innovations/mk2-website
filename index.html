@@ -160,9 +160,13 @@ figure { margin: 0; }
   font-size: clamp(22px, 3vw, 34px); letter-spacing: 0.12em;
   color: color-mix(in srgb, var(--color-text) 82%, transparent);
 }
-.mk-frost__label b { color: var(--color-accent); font-weight: 700; letter-spacing: 0.02em; }
-.mk-frost--c2 .mk-frost__label,
-.mk-frost--c2 .mk-frost__label b { color: #ffffff; }
+.mk-frost__mark {
+  height: 1.6em; width: auto; margin-right: 0.08em; vertical-align: baseline;
+  color: var(--color-accent);
+}
+.mk-frost__mark path { fill: currentColor; }
+.mk-frost--c2 .mk-frost__label { color: #ffffff; }
+.mk-frost--c2 .mk-frost__mark { color: #ffffff; }
 
 .nav {
   display: flex; align-items: center; gap: var(--space-4);
@@ -263,7 +267,7 @@ figure { margin: 0; }
       </div>
       <figure class="mk-frost-fig" style="margin:0; border:1px solid var(--color-divider); border-radius:var(--radius-md); overflow:hidden; background:var(--color-surface);">
         <img src="assets/Media/Autopilots.png" alt="MK-// Autopilot, flight computer" style="display:block;">
-        <div class="mk-frost"><span class="mk-frost__label"><b>-//</b>Coming Soon</span></div>
+        <div class="mk-frost"><span class="mk-frost__label"><svg class="mk-frost__mark" viewBox="50.5 50.5 500 420.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(-782,50)"><path d="M832.5 244.5L856 185H1014L990.5 244.5H832.5Z"/><path d="M1219.5 0.5H1155L994.5 421H1056.5L1219.5 0.5Z"/><path d="M1332.5 0.5H1268.5L1107.5 421H1172L1332.5 0.5Z"/></g></svg>Coming Soon</span></div>
       </figure>
     </div>
   </section>
@@ -273,7 +277,7 @@ figure { margin: 0; }
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:clamp(32px,5vw,80px); align-items:center;">
       <figure class="mk-frost-fig" style="margin:0; order:-1; border:1px solid var(--color-divider); border-radius:var(--radius-md); overflow:hidden; background:var(--color-surface);">
         <img src="assets/Media/C2%20Software.png" alt="MK-// C2, operator console" style="display:block;">
-        <div class="mk-frost mk-frost--c2"><span class="mk-frost__label"><b>-//</b>Coming Soon</span></div>
+        <div class="mk-frost mk-frost--c2"><span class="mk-frost__label"><svg class="mk-frost__mark" viewBox="50.5 50.5 500 420.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g transform="translate(-782,50)"><path d="M832.5 244.5L856 185H1014L990.5 244.5H832.5Z"/><path d="M1219.5 0.5H1155L994.5 421H1056.5L1219.5 0.5Z"/><path d="M1332.5 0.5H1268.5L1107.5 421H1172L1332.5 0.5Z"/></g></svg>Coming Soon</span></div>
       </figure>
       <div>
         <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
